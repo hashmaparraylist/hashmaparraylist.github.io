@@ -1,4 +1,7 @@
-# hashmaparraylist.github.io
+西门闲话 
+================================
+
+[![Build Status](https://travis-ci.org/hashmaparraylist/hashmaparraylist.github.io.svg?branch=master)](https://travis-ci.org/hashmaparraylist/hashmaparraylist.github.io)
 
 个人BLOG站点
 

@@ -96,6 +96,6 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/hashmaparraylist/hashmaparraylist.github.io
-  branch: master
+  repo: git@github.com:hashmaparraylist/hashmaparraylist.github.io.git
+  branch: gh-pages
   
