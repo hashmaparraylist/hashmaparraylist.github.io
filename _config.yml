@@ -97,5 +97,5 @@ theme: landscape
 deploy:
   type: git
   repo: git@github.com:hashmaparraylist/hashmaparraylist.github.io.git
-  branch: gh-pages
+  branch: master
   
