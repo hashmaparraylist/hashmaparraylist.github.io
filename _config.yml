@@ -4,8 +4,8 @@
 
 # Site
 title: 西门闲话
-subtitle: 'sub'
-description: 'desc'
+subtitle: 旧居魔都西门外，年岁不大酷爱吹牛，故曰西门闲话
+description: ''
 keywords: keyword
 author: Sebastian Qu
 language: zh-CN
@@ -90,7 +90,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+#theme: landscape
+theme: icarus
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
