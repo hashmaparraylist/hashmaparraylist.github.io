@@ -19,7 +19,7 @@ date: 2019-12-09 10:40:05
 
 首先还是需要刷新一下ubuntu的包索引并安装build-essential和libssl-dev这2个包以及curl这个工具。
 
-```sh
+``` yaml
 sudo apt-get update
 sudo apt-get install build-essential libssl-dev
 sudo apt-get isntall curl
