@@ -3,20 +3,21 @@
 <head>
     <meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 4.0.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <title>标签: nginx - 西门闲话</title>
 
 
-    <meta name="keywords" content="keyword">
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="西门闲话">
 <meta property="og:url" content="https:&#x2F;&#x2F;hashmaparraylist.github.io&#x2F;tags&#x2F;nginx&#x2F;index.html">
 <meta property="og:site_name" content="西门闲话">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;hashmaparraylist.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="article:author" content="Sebastian Qu">
+<meta property="article:tag" content="keyword">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hashmaparraylist.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -118,7 +119,7 @@ var _hmt = _hmt || [];
                 
                 
                 
-                <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
+                <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -174,7 +175,7 @@ var _hmt = _hmt || [];
             <p>说到后端开发环境，最有名的莫过于LAMP和LNMP，最近由于node.js的强势崛起，越来越多的后端开发也开始试水node.js了。我最近也因为各种原因，前前后后总够构建了好几台node.js + nginx + mongodb的Linux服务器。</p>
 <p>首先关于Linux服务器，比起CentOS来说，我更加喜欢ubuntu一点。所以无论是阿里云还是一些海外的vps服务器上，我也倾向选用ubuntu服务器，本贴也是基于ubuntu服务器里说明的。</p>
 <h2 id="1-开始前的一些准备"><a href="#1-开始前的一些准备" class="headerlink" title="1.开始前的一些准备"></a>1.开始前的一些准备</h2><p>首先还是需要刷新一下ubuntu的包索引并安装build-essential和libssl-dev这2个包以及curl这个工具。</p>
-<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential libssl-dev</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sudo apt-get isntall curl</span></pre></td></tr></table></figure>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">sudo</span> <span class="hljs-string">apt-get</span> <span class="hljs-string">update</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">sudo</span> <span class="hljs-string">apt-get</span> <span class="hljs-string">install</span> <span class="hljs-string">build-essential</span> <span class="hljs-string">libssl-dev</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">sudo</span> <span class="hljs-string">apt-get</span> <span class="hljs-string">isntall</span> <span class="hljs-string">curl</span></span></pre></td></tr></table></figure>
 
 <h2 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2.安装node.js"></a>2.安装node.js</h2><p>关于安装node.js这一点，我不是很推荐使用apt-get 来安装node.js的环境。主要是因为node.js和io.js合并以后，版本迭代速度相当频繁(主要还是因为更多ES6的特性得到了支持）。今后很有可能会有在一台服务器上使用不同版本的node.js的需求。</p>
 <p>这里推荐一个管理不同版本node.js的工具：nvm，官网: <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">https://github.com/creationix/nvm</a>  。安装nvm，如果前面你安装了curl的话可以</p>
@@ -693,7 +694,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
     
     
-<a id="back-to-top" title="回到顶端" href="javascript:;" target="_blank" rel="noopener">
+<a id="back-to-top" title="回到顶端" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
