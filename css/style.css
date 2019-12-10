@@ -422,6 +422,15 @@ figure.highlight table tr:hover {
 figure.highlight table {
   width: auto;
 }
+figure.highlight table tr td {
+  border: none;
+}
+figure.highlight table tr:not(:first-child) td {
+  padding-top: 0;
+}
+figure.highlight table tr:not(:last-child) td {
+  padding-bottom: 0;
+}
 figure.highlight pre {
   padding: 0;
   overflow: visible;
