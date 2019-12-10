@@ -6,7 +6,7 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "cp -ip _config.theme.yml themes/icarus/_config.yml & hexo server"
   },
   "hexo": {
     "version": "4.1.0"
