@@ -149,7 +149,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 566 个字)
+                    5 分钟 读完 (大约 706 个字)
                 </span>
                 
                 
@@ -162,7 +162,9 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <html><head></head><body><p>最近公司因为项目需要，在阿里云上部署了一个Kubernetes集群。虽然阿里云的文档说的还算细致，但是还是有些没有明确说明的细节。</p>
+            <html><head></head><body><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Update:</span><br><span class="line">2020-04-08 增加istio-ingressgateway高可用的设置</span><br></pre></td></tr></tbody></table></figure>
+
+<p>最近公司因为项目需要，在阿里云上部署了一个Kubernetes集群。虽然阿里云的文档说的还算细致，但是还是有些没有明确说明的细节。</p>
 <h1 id="1-购买篇"><a href="#1-购买篇" class="headerlink" title="1. 购买篇"></a>1. 购买篇</h1><p>申请项目预算的时候，只考虑到Worker节点，1个SLB节点以及域名和证书的预算。但是实际购买的时候发现还有许多额外的开销。</p>
 <h2 id="1-1-SNAT"><a href="#1-1-SNAT" class="headerlink" title="1.1 SNAT"></a>1.1 SNAT</h2><p>这个和EIP一并购买，可以方便通过公网使用kubectl访问集群。关于SNAT网关至今不是很明白需要购买这个服务的意义何在，只是为了一个EIP来访问集群吗？</p>
 <h2 id="1-2-Ingress"><a href="#1-2-Ingress" class="headerlink" title="1.2 Ingress"></a>1.2 Ingress</h2><p>这个选上了后，阿里云会给你买个SLB而且还是带公网访问的，如果你后期考虑使用Istio的话，建议你集群创建后，直接停止这个SLB，以免产生额外的费用。</p>
@@ -171,6 +173,8 @@ var _hmt = _hmt || [];
 <h2 id="2-1-额外的SLB"><a href="#2-1-额外的SLB" class="headerlink" title="2.1 额外的SLB"></a>2.1 额外的SLB</h2><p>Istio的Gateway 需要绑定一个新的SLB，和Ingress的SLB不能是同一个，又是一笔额外的开销</p>
 <h2 id="2-2-集群外访问"><a href="#2-2-集群外访问" class="headerlink" title="2.2 集群外访问"></a>2.2 集群外访问</h2><p>这个在阿里云的Istio FAQ中有提到，按照指导很容易解决</p>
 <h2 id="2-2-SLB的443监听"><a href="#2-2-SLB的443监听" class="headerlink" title="2.2 SLB的443监听"></a>2.2 SLB的443监听</h2><p>为了方便443端口的证书绑定，我们直接删除了SLB上原有的443监听(TCP协议), 重新建了一个443监听(HTTPS协议)，指向和80端口同样的虚拟服务器组。但是设置健康检查时一直出错，经过排查发现SLB健康检查发送的请求协议是HTTP 1.0的，Istio的envoy直接反悔了<code>426(Upgrade Required)</code>这个状态码，所以我们无奈只能把健康检查的检查返回状态改为http_4xx，这样就能通过SLB的健康检查了。</p>
+<h2 id="2-3-istio-ingressgateway的高可用"><a href="#2-3-istio-ingressgateway的高可用" class="headerlink" title="2.3 istio-ingressgateway的高可用"></a>2.3 istio-ingressgateway的高可用</h2><p><code>istio-ingressgateway</code>要达成高可用，只需要增加通过伸缩POD就可以实现，于<code>istio-ingressgateway</code>对应的SLB中的虚拟服务器组也会自动增加，完全不需要进行额外的手动设定。</p>
+<p>由于<code>istio-ingressgateway</code>中挂载了HPA<code>HorizontalPodAutoscaler</code>(简称HPA)，通常三节点的集群中最小POD数只有1台，在3节点的集群中，要实现高可用，需要手动修改HPA，增加最小POD数。</p>
 <hr>
 <p>基本上现在遇到了这些坑，再有在总结吧。</p>
 </body></html>
