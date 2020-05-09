@@ -9,6 +9,11 @@ categories:
   - Cloud
 ---
 
+```
+Update:
+2020-04-08 增加istio-ingressgateway高可用的设置
+```
+
 最近公司因为项目需要，在阿里云上部署了一个Kubernetes集群。虽然阿里云的文档说的还算细致，但是还是有些没有明确说明的细节。
 
 # 1. 购买篇
@@ -41,7 +46,13 @@ Istio的Gateway 需要绑定一个新的SLB，和Ingress的SLB不能是同一个
 
 ## 2.2 SLB的443监听
 
-为了方便443端口的证书绑定，我们直接删除了SLB上原有的443监听(TCP协议), 重新建了一个443监听(HTTPS协议)，指向和80端口同样的虚拟服务器组。但是设置健康检查时一直出错，指导把正常状态改为http_4xx才能通过健康检查。感觉阿里云健康检查的时候使用的HTTP 1.0协议被Istio认为是低版本协议返回了412错误。
+为了方便443端口的证书绑定，我们直接删除了SLB上原有的443监听(TCP协议), 重新建了一个443监听(HTTPS协议)，指向和80端口同样的虚拟服务器组。但是设置健康检查时一直出错，经过排查发现SLB健康检查发送的请求协议是HTTP 1.0的，Istio的envoy直接反悔了`426(Upgrade Required)`这个状态码，所以我们无奈只能把健康检查的检查返回状态改为http_4xx，这样就能通过SLB的健康检查了。
+
+## 2.3 istio-ingressgateway的高可用
+
+`istio-ingressgateway`要达成高可用，只需要增加通过伸缩POD就可以实现，于`istio-ingressgateway`对应的SLB中的虚拟服务器组也会自动增加，完全不需要进行额外的手动设定。
+
+由于`istio-ingressgateway`中挂载了HPA`HorizontalPodAutoscaler`(简称HPA)，通常三节点的集群中最小POD数只有1台，在3节点的集群中，要实现高可用，需要手动修改HPA，增加最小POD数。
 
 ---
 
