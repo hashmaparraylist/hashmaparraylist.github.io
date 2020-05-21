@@ -35,7 +35,7 @@ date: 2020-05-09 10:34:47
 - 前端Web应用使用到的一些接口 `Platform Service`
 - 负责第三方推送服务商交互的 `Push Service`
 - 提供云平台鉴权用的 `Auth Service`
-- 用来管理任务调度的 `Corn Service`
+- 用来管理任务调度的 `Cron Service`
 
 由于前一个项目实施的时候没有使用容器部署，每当访问量峰值的时候，我们这些码农兼运维就各种加班，所以这次项目决定直接将服务容器化，同时选择了`Kubernetes`来管理容器。由于客观原因线上的`Kubernetes`直接购买了Aliyun的托管版`Kubernetes`服务。 内部的开发测试环境则使用了 `Rancher 2.0` 来构建`Kubernetes`集群。
 
