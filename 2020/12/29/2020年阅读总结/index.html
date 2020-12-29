@@ -7,24 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>在ubuntu上从零搭建node.js + nginx + mongodb环境 - 西门闲话</title>
+<title>2020年阅读总结 - 西门闲话</title>
 
 
-    <meta name="description" content="说到后端开发环境，最有名的莫过于LAMP和LNMP，最近由于node.js的强势崛起，越来越多的后端开发也开始试水node.js了。我最近也因为各种原因，前前后后总够构建了好几台node.js + nginx + mongodb的Linux服务器。 首先关于Linux服务器，比起CentOS来说，我更加喜欢ubuntu一点。所以无论是阿里云还是一些海外的vps服务器上，我也倾向选用ubuntu服务">
+    <meta name="description" content="多灾多难的2020年已经没有几天了，整个2020年要说还真是像一记刹车，去年很多想法，计划都有因为疫情原因搁置了。平时的生活更是从宅家变成了重度宅家的状态，自然就多出了许多大段大段的连续时间，可以用来好好玩玩大作，看看小说。仔细盘点一下今年总共看了10本小说外加2本科普书籍( 2020年阅读书单)，算是自2018年以来读书最多的一个年份了。其中不乏拖了近3年的那本《西方文化中的数学》。接着就来絮叨">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在ubuntu上从零搭建node.js + nginx + mongodb环境">
-<meta property="og:url" content="https://hashmaparraylist.github.io/2019/12/09/hot-to-install-nodejs-nginx-mongodb-on-ubuntu/index.html">
+<meta property="og:title" content="2020年阅读总结">
+<meta property="og:url" content="https://hashmaparraylist.github.io/2020/12/29/2020%E5%B9%B4%E9%98%85%E8%AF%BB%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="西门闲话">
-<meta property="og:description" content="说到后端开发环境，最有名的莫过于LAMP和LNMP，最近由于node.js的强势崛起，越来越多的后端开发也开始试水node.js了。我最近也因为各种原因，前前后后总够构建了好几台node.js + nginx + mongodb的Linux服务器。 首先关于Linux服务器，比起CentOS来说，我更加喜欢ubuntu一点。所以无论是阿里云还是一些海外的vps服务器上，我也倾向选用ubuntu服务">
+<meta property="og:description" content="多灾多难的2020年已经没有几天了，整个2020年要说还真是像一记刹车，去年很多想法，计划都有因为疫情原因搁置了。平时的生活更是从宅家变成了重度宅家的状态，自然就多出了许多大段大段的连续时间，可以用来好好玩玩大作，看看小说。仔细盘点一下今年总共看了10本小说外加2本科普书籍( 2020年阅读书单)，算是自2018年以来读书最多的一个年份了。其中不乏拖了近3年的那本《西方文化中的数学》。接着就来絮叨">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hashmaparraylist.github.io/images/og_image.png">
-<meta property="article:published_time" content="2019-12-09T02:40:05.000Z">
+<meta property="article:published_time" content="2020-12-29T02:45:41.000Z">
 <meta property="article:modified_time" content="2020-12-29T08:04:46.060Z">
 <meta property="article:author" content="Sebastian Qu">
-<meta property="article:tag" content="ubuntu">
-<meta property="article:tag" content="node.js">
-<meta property="article:tag" content="nginx">
-<meta property="article:tag" content="mongodb">
+<meta property="article:tag" content="阅读">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hashmaparraylist.github.io/images/og_image.png">
 
@@ -92,7 +89,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="在ubuntu上从零搭建node.js + nginx + mongodb环境" height="28">
+                <img src="/images/logo.svg" alt="2020年阅读总结" height="28">
             
             </a>
         </div>
@@ -145,17 +142,17 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-09T02:40:05.000Z">2019-12-09</time>
+                <time class="level-item has-text-grey" datetime="2020-12-29T02:45:41.000Z">2020-12-29</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+                <a class="has-link-grey -link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 884 个字)
+                    9 分钟 读完 (大约 1330 个字)
                 </span>
                 
                 
@@ -164,35 +161,47 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                在ubuntu上从零搭建node.js + nginx + mongodb环境
+                2020年阅读总结
             
         </h1>
         <div class="content">
-            <html><head></head><body><p>说到后端开发环境，最有名的莫过于LAMP和LNMP，最近由于node.js的强势崛起，越来越多的后端开发也开始试水node.js了。我最近也因为各种原因，前前后后总够构建了好几台node.js + nginx + mongodb的Linux服务器。</p>
-<p>首先关于Linux服务器，比起CentOS来说，我更加喜欢ubuntu一点。所以无论是阿里云还是一些海外的vps服务器上，我也倾向选用ubuntu服务器，本贴也是基于ubuntu服务器里说明的。</p>
-<h2 id="1-开始前的一些准备"><a href="#1-开始前的一些准备" class="headerlink" title="1.开始前的一些准备"></a>1.开始前的一些准备</h2><p>首先还是需要刷新一下ubuntu的包索引并安装build-essential和libssl-dev这2个包以及curl这个工具。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install build-essential libssl-dev</span><br><span class="line">sudo apt-get isntall curl</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2.安装node.js"></a>2.安装node.js</h2><p>关于安装node.js这一点，我不是很推荐使用apt-get 来安装node.js的环境。主要是因为node.js和io.js合并以后，版本迭代速度相当频繁(主要还是因为更多ES6的特性得到了支持）。今后很有可能会有在一台服务器上使用不同版本的node.js的需求。</p>
-<p>这里推荐一个管理不同版本node.js的工具：nvm，官网: <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">https://github.com/creationix/nvm</a>  。安装nvm，如果前面你安装了curl的话可以</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash</span><br></pre></td></tr></tbody></table></figure>
-<p>如果没有按照curl的话，也可以使用wget来进行安装</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后nvm就会自动安装到home目录下面的.nvm目录里，并会在.bashrc里自动添加nvm的环境变量。为了让环境变量生效，最简单的方法就是通过ssh或是telnet重新连接你的服务器。</p>
-<p>安装完nvm后，就可以通过nvm来安装指定版本的node.js了。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 列出可以安装的node版本号</span></span><br><span class="line">nvm ls-remote</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 安装指定版本的node (当前最新版本为v5.7.1, LTS版是v4.3.2)</span></span><br><span class="line">nvm install v4.3.2</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="3-安装nginx"><a href="#3-安装nginx" class="headerlink" title="3.安装nginx"></a>3.安装nginx</h2><p>由于ubuntu源（尤其是阿里云的源）上的nginx经常不是最新的，如果需要安装最新版本nginx的时候需要手动添加nginx的源。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 添加nginx的mainline仓库</span></span><br><span class="line"><span class="hljs-built_in">cd</span> /tmp/ && wget http://nginx.org/keys/nginx_signing.key</span><br><span class="line">sudo apt-key add nginx_signing.key</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 编辑/etc/apt/sources.list.d/nginx.list 添加下面2行内容，井号不需要</span></span><br><span class="line"><span class="hljs-comment"># deb http://nginx.org/packages/mainline/ubuntu/ ubuntu代号 nginx</span></span><br><span class="line"><span class="hljs-comment"># deb-src http://nginx.org/packages/mainline/ubuntu/ ubuntu代号 nginx</span></span><br><span class="line">sudo vi  /etc/apt/sources.list.d/nginx.list</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 更新源，并安装nginx</span></span><br><span class="line">sudo apt-get update && sudo apt-get install nginx</span><br></pre></td></tr></tbody></table></figure>
-
-<p>在编辑/etc/apt/sources.list.d/nginx.list的时候需要注意，“ubuntu代号”需要根据ubuntu服务器的版本不同手动调整的，比如14.04是trusty。通过下面的命令可以获取ubuntu的代号。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -cs</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4.安装mongodb"></a>4.安装mongodb</h2><p>同样和nginx有同样的问题，要安装最新3.2版本的mongodb也需要手动添加ubuntu的源。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 导入mongodb的public key</span></span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 生成mongodb的源list</span></span><br><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse"</span> | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 更新源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 安装最新版本的mongodb</span></span><br><span class="line">sudo apt-get install -y mongodb-org</span><br></pre></td></tr></tbody></table></figure>
-
-<p>以上一台node.js + nginx + mongodb的ubuntu服务器就完成了。</p>
+            <html><head></head><body><p>多灾多难的2020年已经没有几天了，整个2020年要说还真是像一记刹车，去年很多想法，计划都有因为疫情原因搁置了。平时的生活更是从宅家变成了重度宅家的状态，自然就多出了许多大段大段的连续时间，可以用来好好玩玩大作，看看小说。仔细盘点一下今年总共看了10本小说外加2本科普书籍( <a href="https://github.com/hashmaparraylist/ReadList/blob/master/ReadList2020.md" target="_blank" rel="noopener">2020年阅读书单</a><br>)，算是自2018年以来读书最多的一个年份了。其中不乏拖了近3年的那本《西方文化中的数学》。接着就来絮叨絮叨今年看的这12本书吧。</p>
+<hr>
+<blockquote>
+<p>《莱博维茨的赞歌》</p>
+</blockquote>
+<p>第一次被安利《莱博维茨的赞歌》的机核的电台节目<a href="https://www.gcores.com/radios/16773" target="_blank" rel="noopener">辐射－视觉、音乐以及文学</a>, 当时听完节目就相当好奇，可以被一部载入史册的CRPG游戏誉为精神文本的小说到底是个什么样子的。但是当时新星版的译本几乎就是绝本了，某鱼的二手价也要已经飙到了3位数。直到今年年初在核市节目上听到了中信版译本的消息,才有机会买来拜读。</p>
+<p>全书通过3个故事讲述了核战灭世后莱博维茨修道院从保卫文明，到重建，然后看着文明再度毁灭的故事。各种无不透露着辐射那股 <code>War, War never changed</code>的味道。</p>
+<blockquote>
+<p>《占星术杀人事件》《屋顶上的小丑》《亿男》</p>
+</blockquote>
+<p>这3本书都是2019年上海书展上买的。前两本都是岛田庄司的推理名篇，其中《占星术杀人事件》在本格派推理史上有着非凡的地位，各种被抄袭从未被超越过。《屋顶上的小丑》要是最吸引人的话就是多线叙事，每条线都掐在恰如其分的地方。《亿男》则是挂着悬疑羊头卖着人生哲理。</p>
+<blockquote>
+<p>《神经漫游者》</p>
+</blockquote>
+<p>威廉吉布森的蔓生三部曲之一，开创了赛博朋克的科幻流派，说实话这本书我看的很痛苦，很多地方实在读不懂，到现在我还是不明白那些无法读懂的地方到底是原著如此，还是翻译的不行，亦或者是Kindle版排版太烂了。</p>
+<blockquote>
+<p>《神们自己》，《神的九十亿个名字》</p>
+</blockquote>
+<p>阿瑟克拉克的中篇小说和短篇小说集，这两本书阅读体验奇佳，尤其是在读完《神经漫游者》后，虽然三本书被Amazon打在同一个包里来卖的，但是光从排版上就比《神经漫游者》高出不少，所以才会有我对后者排版问题的质疑。</p>
+<p>《神们自己》三线叙事，讲述了2个平行宇宙中的2个物种在能源，种族存续，家庭伦理上的各种讨论和故事。 《神的九十亿个名字》作为短篇小说集收录了好几篇风格题材迥异的小说，花上十几分钟读上一个故事是相当惬意的。</p>
+<blockquote>
+<p>《佐伊的战争》 《人类决裂》 《万物的终结》</p>
+</blockquote>
+<p>约翰斯卡尔齐的《老人的战争》系列的后3部，前三部大概是3，4年前读的吧，在这个宇宙观里最吸引人的设定就绿皮的人类防卫军战士，以及跨种族间的政治斗争。系列的六本书相当于在这个大设定下讲的六个故事。每个故事虽说都是独立的故事，但是前后皆有关联，而且最重要的就是每本的长度都算不上很长，相当适合于一口气读完。</p>
+<blockquote>
+<p>《西方文化中的数学》</p>
+</blockquote>
+<p>这本书大概是从2017年开始读的，当时意气奋发觉得对于理科生出身的我，书中内容应该很好理解，没想到最后不光是文化还是数学读的都是一知半解。只能说自大了。</p>
+<blockquote>
+<p>《一想到还有95%的问题留给人类，我就放心了》</p>
+</blockquote>
+<p>大概是18年还是19年前后对量子物理和宇宙物理开始有了兴趣，虽然各中理论并不是很了解，但是仍然很好奇的买了这本书，全书插画相当有趣，同时使用浅显易懂的语言来解释各种复杂的物理现象，以及当今人类物理知识的边界。强烈推荐给想假装成学霸的朋友。</p>
+<hr>
+<blockquote>
+<p>2021年读什么</p>
+</blockquote>
+<p>具体读啥还没想好基本上还是以科幻和悬疑为主，但是肯定会读的应该有海明威的《丧钟为谁而鸣》和小林泰三的《醉步男》吧。</p>
 </body></html>
         </div>
         
@@ -200,7 +209,7 @@ var _hmt = _hmt || [];
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/mongodb/" rel="tag">mongodb</a>, <a class="has-link-grey -link" href="/tags/nginx/" rel="tag">nginx</a>, <a class="has-link-grey -link" href="/tags/node-js/" rel="tag">node.js</a>, <a class="has-link-grey -link" href="/tags/ubuntu/" rel="tag">ubuntu</a>
+                    <a class="has-link-grey -link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a>
                 </div>
             </div>
         </div>
@@ -221,13 +230,13 @@ var _hmt = _hmt || [];
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/04/01/%E9%98%BF%E9%87%8C%E4%BA%91Kubernetes%E4%B8%8A%E7%BA%BF%E8%B8%A9%E5%9D%91%E8%AE%B0/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">阿里云Kubernetes上线踩坑记</span>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/21/Lagrange%E9%A1%B9%E7%9B%AE%E5%9B%9E%E9%A1%BE2/">
+                <span class="level-item">Largrange项目架构与设计回顾 (二)</span>
+                <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
-        
         
     </div>
 </div>
@@ -243,7 +252,7 @@ var _hmt = _hmt || [];
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 	var gitment = new Gitment({
-		id: '077b76dad172ec5b657caae58d1a1110',
+		id: '933a4b022545ea24d86dfa9527701dab',
 		owner: 'hashmaparraylist',
 		repo: 'hashmaparraylist.github.io',
 		oauth: {
@@ -946,7 +955,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="在ubuntu上从零搭建node.js + nginx + mongodb环境" height="28">
+                    <img src="/images/logo.svg" alt="2020年阅读总结" height="28">
                 
                 </a>
                 <p class="is-size-7">
