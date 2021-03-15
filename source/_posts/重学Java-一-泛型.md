@@ -136,12 +136,12 @@ public class ArrayList<E> extends AbstractList<E>
 
 // 这是一个简单的 Entity 对象
 // 通常现在的 Java 应用都会使用到 Lombok 和 Spring Boot
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = 'user')
+@Table(name = "user")
 public class User {
     @Id
     private Long id;
@@ -247,11 +247,11 @@ public interface ICrudService<E, ID> {
     List<E> findAll();
     Optional<E> findById(ID id);
     E save(E e);
-    void deleteById(Long id);
+    void deleteById(ID id);
 }
 
 // 然后 Service 层的接口，就可以简化成这样
-public interface User extends ICrudService<User, Long> {
+public interface UserService extends ICrudService<User, Long> {
 }
 ```
 
@@ -271,7 +271,7 @@ public abstract class AbstractCrudService<T extends JpaRepository<E, ID>, E, ID>
     }
 
     public Optional<E> findById(ID id) {
-        return this.dao.findById(id).get();
+        return this.dao.findById(id);
     }
 
     public E save(E e) {
@@ -286,9 +286,6 @@ public abstract class AbstractCrudService<T extends JpaRepository<E, ID>, E, ID>
 // 那 Service 的实现类可以简化成这样
 @Service
 public class UserServiceImpl extends AbstractCrudService<UserDao, User, Long> implements UserService {
-    // 这里需要注意一下 DAO 由于已经被作为一个泛型参数，
-    // 所以我们这里只能通过构造器来进行注入，
-    // 而不能使用 @Autowired
     public UserServiceImpl(UserDao dao) {
         supper(dao);
     }
@@ -315,25 +312,25 @@ public abstract class AbstractCrudController<T extends ICrudService<E, ID>, E, I
     @ResponseBody
     public E get(@PathVariable("id") ID id) {
         // 由于是示例这里就不考虑没有数据的情况了
-        return this.service.findById(id);
+        return this.service.findById(id).get();
     }
 
     @PostMapping
     @ResponseBody
     public E create(@RequestBody E e) {
-        return this.userService.save(user);
+        return this.service.save(e);
     }
 
     @PutMapping("{id}")
     @ResponseBody
-    public E update(@RequestBody E) {
-        return this.userService.save(e);
+    public E update(@RequestBody E e) {
+        return this.service.save(e);
     }
 
     @DeleteMapping("{id}")
     @ResponseBody
     public E delete(@PathVariable("id") ID id) {
-        E e= this.service.findById(id).get();
+        E e = this.service.findById(id).get();
         this.service.deleteById(id);
         return e;
     }
@@ -342,9 +339,9 @@ public abstract class AbstractCrudController<T extends ICrudService<E, ID>, E, I
 // 具体的 WebAPI
 @RestController
 @RequestMapping("/user/")
-public UserController extends AbstractCrudController<UserService, User, Long> {
+public class UserController extends AbstractCrudController<UserService, User, Long> {
     public UserController(UserService service) {
-        this.service = service;
+        super(service);
     }
 }
 ```
