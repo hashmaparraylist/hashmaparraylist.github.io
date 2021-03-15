@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分类: 后端 - 西门闲话</title>
+<title>标签: generic - 西门闲话</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="西门闲话">
-<meta property="og:url" content="https://hashmaparraylist.github.io/categories/%E5%90%8E%E7%AB%AF/index.html">
+<meta property="og:url" content="https://hashmaparraylist.github.io/tags/generic/index.html">
 <meta property="og:site_name" content="西门闲话">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hashmaparraylist.github.io/images/og_image.png">
@@ -135,9 +135,8 @@ var _hmt = _hmt || [];
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">分类</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">后端</a></li>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">generic</a></li>
         </ul>
         </nav>
     </div>
@@ -220,136 +219,6 @@ var _hmt = _hmt || [];
 <li><a href="https://github.com/hashmaparraylist/re-study-java" target="_blank" rel="noopener">GitHub入口</a></li>
 <li><a href="https://gitee.com/hashmaparraylist/re-study-java" target="_blank" rel="noopener">gitee入口</a></li>
 </ul>
-</body></html>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-01T01:47:38.000Z">2020-04-01</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%90%8E%E7%AB%AF/Cloud/">Cloud</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 706 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/04/01/%E9%98%BF%E9%87%8C%E4%BA%91Kubernetes%E4%B8%8A%E7%BA%BF%E8%B8%A9%E5%9D%91%E8%AE%B0/">阿里云Kubernetes上线踩坑记</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Update:</span><br><span class="line">2020-04-08 增加istio-ingressgateway高可用的设置</span><br></pre></td></tr></tbody></table></figure>
-
-<p>最近公司因为项目需要，在阿里云上部署了一个Kubernetes集群。虽然阿里云的文档说的还算细致，但是还是有些没有明确说明的细节。</p>
-<h1 id="1-购买篇"><a href="#1-购买篇" class="headerlink" title="1. 购买篇"></a>1. 购买篇</h1><p>申请项目预算的时候，只考虑到Worker节点，1个SLB节点以及域名和证书的预算。但是实际购买的时候发现还有许多额外的开销。</p>
-<h2 id="1-1-SNAT"><a href="#1-1-SNAT" class="headerlink" title="1.1 SNAT"></a>1.1 SNAT</h2><p>这个和EIP一并购买，可以方便通过公网使用kubectl访问集群。关于SNAT网关至今不是很明白需要购买这个服务的意义何在，只是为了一个EIP来访问集群吗？</p>
-<h2 id="1-2-Ingress"><a href="#1-2-Ingress" class="headerlink" title="1.2 Ingress"></a>1.2 Ingress</h2><p>这个选上了后，阿里云会给你买个SLB而且还是带公网访问的，如果你后期考虑使用Istio的话，建议你集群创建后，直接停止这个SLB，以免产生额外的费用。</p>
-<h2 id="1-3-日志服务"><a href="#1-3-日志服务" class="headerlink" title="1.3 日志服务"></a>1.3 日志服务</h2><p>通过阿里云的日志服务来收集应用的的日志，挺好用的。但是另外收费，如果有能力的自建日志服务的可不购买。</p>
-<h1 id="2-Istio"><a href="#2-Istio" class="headerlink" title="2. Istio"></a>2. Istio</h1><p>阿里云的Kubernetes集群完美集成了Istio，根据向导就能很简单的部署成功。</p>
-<h2 id="2-1-额外的SLB"><a href="#2-1-额外的SLB" class="headerlink" title="2.1 额外的SLB"></a>2.1 额外的SLB</h2><p>Istio的Gateway 需要绑定一个新的SLB，和Ingress的SLB不能是同一个，又是一笔额外的开销</p>
-<h2 id="2-2-集群外访问"><a href="#2-2-集群外访问" class="headerlink" title="2.2 集群外访问"></a>2.2 集群外访问</h2><p>这个在阿里云的Istio FAQ中有提到，按照指导很容易解决</p>
-<h2 id="2-2-SLB的443监听"><a href="#2-2-SLB的443监听" class="headerlink" title="2.2 SLB的443监听"></a>2.2 SLB的443监听</h2><p>为了方便443端口的证书绑定，我们直接删除了SLB上原有的443监听(TCP协议), 重新建了一个443监听(HTTPS协议)，指向和80端口同样的虚拟服务器组。但是设置健康检查时一直出错，经过排查发现SLB健康检查发送的请求协议是HTTP 1.0的，Istio的envoy直接反悔了<code>426(Upgrade Required)</code>这个状态码，所以我们无奈只能把健康检查的检查返回状态改为http_4xx，这样就能通过SLB的健康检查了。</p>
-<h2 id="2-3-istio-ingressgateway的高可用"><a href="#2-3-istio-ingressgateway的高可用" class="headerlink" title="2.3 istio-ingressgateway的高可用"></a>2.3 istio-ingressgateway的高可用</h2><p><code>istio-ingressgateway</code>要达成高可用，只需要增加通过伸缩POD就可以实现，于<code>istio-ingressgateway</code>对应的SLB中的虚拟服务器组也会自动增加，完全不需要进行额外的手动设定。</p>
-<p>由于<code>istio-ingressgateway</code>中挂载了HPA<code>HorizontalPodAutoscaler</code>(简称HPA)，通常三节点的集群中最小POD数只有1台，在3节点的集群中，要实现高可用，需要手动修改HPA，增加最小POD数。</p>
-<hr>
-<p>基本上现在遇到了这些坑，再有在总结吧。</p>
-</body></html>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-09T02:40:05.000Z">2019-12-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 884 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/09/hot-to-install-nodejs-nginx-mongodb-on-ubuntu/">在ubuntu上从零搭建node.js + nginx + mongodb环境</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>说到后端开发环境，最有名的莫过于LAMP和LNMP，最近由于node.js的强势崛起，越来越多的后端开发也开始试水node.js了。我最近也因为各种原因，前前后后总够构建了好几台node.js + nginx + mongodb的Linux服务器。</p>
-<p>首先关于Linux服务器，比起CentOS来说，我更加喜欢ubuntu一点。所以无论是阿里云还是一些海外的vps服务器上，我也倾向选用ubuntu服务器，本贴也是基于ubuntu服务器里说明的。</p>
-<h2 id="1-开始前的一些准备"><a href="#1-开始前的一些准备" class="headerlink" title="1.开始前的一些准备"></a>1.开始前的一些准备</h2><p>首先还是需要刷新一下ubuntu的包索引并安装build-essential和libssl-dev这2个包以及curl这个工具。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install build-essential libssl-dev</span><br><span class="line">sudo apt-get isntall curl</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2.安装node.js"></a>2.安装node.js</h2><p>关于安装node.js这一点，我不是很推荐使用apt-get 来安装node.js的环境。主要是因为node.js和io.js合并以后，版本迭代速度相当频繁(主要还是因为更多ES6的特性得到了支持）。今后很有可能会有在一台服务器上使用不同版本的node.js的需求。</p>
-<p>这里推荐一个管理不同版本node.js的工具：nvm，官网: <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">https://github.com/creationix/nvm</a>  。安装nvm，如果前面你安装了curl的话可以</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash</span><br></pre></td></tr></tbody></table></figure>
-<p>如果没有按照curl的话，也可以使用wget来进行安装</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash</span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后nvm就会自动安装到home目录下面的.nvm目录里，并会在.bashrc里自动添加nvm的环境变量。为了让环境变量生效，最简单的方法就是通过ssh或是telnet重新连接你的服务器。</p>
-<p>安装完nvm后，就可以通过nvm来安装指定版本的node.js了。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 列出可以安装的node版本号</span></span><br><span class="line">nvm ls-remote</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 安装指定版本的node (当前最新版本为v5.7.1, LTS版是v4.3.2)</span></span><br><span class="line">nvm install v4.3.2</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="3-安装nginx"><a href="#3-安装nginx" class="headerlink" title="3.安装nginx"></a>3.安装nginx</h2><p>由于ubuntu源（尤其是阿里云的源）上的nginx经常不是最新的，如果需要安装最新版本nginx的时候需要手动添加nginx的源。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 添加nginx的mainline仓库</span></span><br><span class="line"><span class="hljs-built_in">cd</span> /tmp/ && wget http://nginx.org/keys/nginx_signing.key</span><br><span class="line">sudo apt-key add nginx_signing.key</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 编辑/etc/apt/sources.list.d/nginx.list 添加下面2行内容，井号不需要</span></span><br><span class="line"><span class="hljs-comment"># deb http://nginx.org/packages/mainline/ubuntu/ ubuntu代号 nginx</span></span><br><span class="line"><span class="hljs-comment"># deb-src http://nginx.org/packages/mainline/ubuntu/ ubuntu代号 nginx</span></span><br><span class="line">sudo vi  /etc/apt/sources.list.d/nginx.list</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 更新源，并安装nginx</span></span><br><span class="line">sudo apt-get update && sudo apt-get install nginx</span><br></pre></td></tr></tbody></table></figure>
-
-<p>在编辑/etc/apt/sources.list.d/nginx.list的时候需要注意，“ubuntu代号”需要根据ubuntu服务器的版本不同手动调整的，比如14.04是trusty。通过下面的命令可以获取ubuntu的代号。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -cs</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4.安装mongodb"></a>4.安装mongodb</h2><p>同样和nginx有同样的问题，要安装最新3.2版本的mongodb也需要手动添加ubuntu的源。</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 导入mongodb的public key</span></span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 生成mongodb的源list</span></span><br><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse"</span> | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 更新源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 安装最新版本的mongodb</span></span><br><span class="line">sudo apt-get install -y mongodb-org</span><br></pre></td></tr></tbody></table></figure>
-
-<p>以上一台node.js + nginx + mongodb的ubuntu服务器就完成了。</p>
 </body></html>
         </div>
         
