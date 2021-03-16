@@ -226,11 +226,11 @@ widgets:
         # Author's current location
         location: Shanghai
         # URL or path to the avatar image
-        avatar: 
+        avatar: /images/avatar.jpeg
         # Whether show the rounded avatar image
         avatar_rounded: false
         # Email address for the Gravatar
-        gravatar: sebastianqu@gmail.com
+        gravatar: 
         # URL or path for the follow button
         follow_link: 'https://github.com/hashmaparraylist'
         # Links to be shown on the bottom of the profile widget
