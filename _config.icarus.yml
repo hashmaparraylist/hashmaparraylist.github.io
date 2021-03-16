@@ -157,6 +157,7 @@ comment:
     owner: hashmaparraylist
     admin:
         - hashmaparraylist
+    proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
     enable_hotkey: true             # 可选填
     language: zh-CN                 # 可选填
 # Donate plugin configurations
