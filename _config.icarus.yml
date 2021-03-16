@@ -151,8 +151,8 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
     type: gitalk 
-    client_id: c497d6446a25c99d0a4e
-    client_secret: 64c3d4a2feb04bad73c80af9e800408b6a465c57
+    client_id: 7adb5c968ecf6738f14e
+    client_secret: b2f23fc0a2ecca7a3ac2b2e10079a3331e2ee0c7
     repo: hashmaparraylist.github.io
     owner: hashmaparraylist
     admin:
