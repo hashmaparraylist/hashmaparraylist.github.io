@@ -111,8 +111,12 @@ mermaid: ## mermaid url https://github.com/knsv/mermaid
 
 feed:
   enable: true
-  type: rss2
-  path: rss2.xml
+  type: 
+    - rss2
+    - atom
+  path: 
+    - rss2.xml
+    - atom.xml
   limit: 20
   hub:
   content: true
