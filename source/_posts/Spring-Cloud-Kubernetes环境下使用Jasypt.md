@@ -59,7 +59,7 @@ data:
     ...
     "propertySources": [
         {
-            "name": "bootstrapProperties-configmap.hobbits-bz-demo.micro-service",
+            "name": "bootstrapProperties-configmap.demo.default",
             "properties": {
                 "test2": {
                     "value": "Hello,world"
@@ -169,7 +169,7 @@ data:
     ...
     "propertySources": [
         {
-            "name": "bootstrapProperties-configmap.hobbits-bz-demo.micro-service",
+            "name": "bootstrapProperties-configmap.demo.default",
             "properties": {
                 "test2": {
                     "value": "ENC(94Y7Ds3+RKraxQQlura9sDx+9yF0zDLMGMwi2TjyCFZOkkHfreRFSb6fxbyvCKs7)"
