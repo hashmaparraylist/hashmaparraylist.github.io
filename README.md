@@ -1,7 +1,7 @@
 西门闲话 
 ================================
 
-[![Build Status](https://travis-ci.com/hashmaparraylist/hashmaparraylist.github.io.svg?branch=develop)](https://travis-ci.com/hashmaparraylist/hashmaparraylist.github.io)
+[![Build Status](https://github.com/hashmaparraylist/hashmaparraylist.github.io/actions/workflows/pages.yml/badge.svg?branch=develop&event=push)](https://github.com/hashmaparraylist/hashmaparraylist.github.io/actions/workflows/pages.yml)
 
 个人BLOG站点
 
