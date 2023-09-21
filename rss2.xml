@@ -6,7 +6,7 @@
   <link href="https://hashmaparraylist.github.io/rss2.xml" rel="self"/>
   
   <link href="https://hashmaparraylist.github.io/"/>
-  <updated>2023-07-12T09:29:36.609Z</updated>
+  <updated>2023-09-21T10:00:16.318Z</updated>
   <id>https://hashmaparraylist.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>H项目心路历程记(三)</title>
+    <link href="https://hashmaparraylist.github.io/2023/09/21/H%E9%A1%B9%E7%9B%AE%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B%E8%AE%B0-3/"/>
+    <id>https://hashmaparraylist.github.io/2023/09/21/H%E9%A1%B9%E7%9B%AE%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B%E8%AE%B0-3/</id>
+    <published>2023-09-21T09:58:33.000Z</published>
+    <updated>2023-09-21T10:00:16.318Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h1><p>对于一个基于微服务的中台系统来说，需要以什么样的颗粒度来拆分系统。这一直是基于微服务架构的系统中绕不过去的问题。</p><p>已H项目来说，当初考量是这么划分微服务的,其中</p><ul><li><code>基础服务</code>: 作用主要是负责用户，角色权限，登陆鉴权，以及一些基础主档数据的日常维护功能 </li><li><code>商品服务</code>: 物料，销售商品，款式，平台商品等和实际商品相关的主档数据</li><li><code>库存服务</code>：负责管理各个库存层级库存(总库存，冻结库存，在途库存等)，以及展示各种出入库单据，并向其他微服务提供出入库服务接口。</li><li><code>订单服务</code>: 负责接收各个公域平台的ToC订单，售后单(含发货前退款，退货，换货单等)，并根据配置策略进行单据路由(分仓，分物流，Hold单，加送赠品，通知仓库发货，通知平台发货等)</li><li><code>接口服务</code>: 主要承揽中台服务和第三方平台间的交互处理(主要是第三方平台发起的主调通知以及回调)</li></ul><p>上述五个服务为核心服务，是保证整个中台系统基础业务功能运行的重要组成部分。除此之外还有，</p><ul><li><code>采购服务</code>：负责ToB业务线的处理</li><li><code>财务服务</code>：满足一些企业的财务对账以及开具电子发票的功能</li><li><code>报表服务</code>: 每天，每周定期从其他服务(主要是订单)</li><li><code>会员服务</code>：管理各类会员</li></ul><p>等7，8个非核心服务，组成非核心业务。来构成一个完整的中台系统。</p><h1 id="拆分策略以及缺点"><a href="#拆分策略以及缺点" class="headerlink" title="拆分策略以及缺点"></a>拆分策略以及缺点</h1><p>当时主要考虑到整个中台系统是可以拆分出售，客户可以只选择购买自身需要的服务，而不需要的服务则无需购买服务，所以当初在拆分服务上在业务领域层面上需要更加低颗粒度；同时考虑到再业务高峰期(下午到晚上，就是各位疯狂刷淘宝，京东的时候)各个服务的负载是各不相同的，如果在高峰期对于特定服务需要进行精准扩容的话，拆分的颗粒度也需要更加细致，所以结果上导致整个系统满血运行起来要至少要十几个服务，外加一些没有云平台的中间件。整个Kubernetes环境中，至少要有十五六个Deployment，考虑到系统稳定性，一个Deployment也至少要有2到3个Pod，那整个系统至少就是50个Pod。</p><p>对于一个中大型的电商企业再服务器成本上可以负担这样一个能支持50个Pod的Kubernentes集群(考虑到需要一些中间件的云产品，当时估算最小的服务器成本都要到70K&#x2F;年，一个中大型企业能面对双十一流量的服务器成本都要到300K&#x2F;年以上)。所以整个系统对于中小型企业来说前期的投入负担相当大(尤其是在后疫情时代的2022年，2023年)，以至于早起的好几个客户都是需要我们自己贴补服务器费用的。</p><h1 id="复盘"><a href="#复盘" class="headerlink" title="复盘"></a>复盘</h1><p>现在重新复盘当初服务的拆分策略，个人觉得对于核心业务来说，相似领域的一些服务应该可以适当的聚合。比如上述的五大核心服务上中的<code>商品服务</code>,<code>订单服务</code>,<code>库存服务</code>三个核心服务应该可以合并在一起。首先这3个核心服务是<code>H项目</code>的最重要的竞争力，几乎不可能出现把这3个服务拆分出售的可能性。</p><p>而且在业务高峰期有<code>订单服务</code>有新订单处理时，势必会产生库存的变化，因此会调用到<code>库存服务</code>。三个服务之间的调用是相当频繁的，尤其是负责处理商品主档数据的<code>商品服务</code>，无论是通过HTTP或是其他方式的远程调用的话，都会有许多浪费的带宽。如果把三个服务整合，那么之间的调用基本上就是线程间的交互，无论是效率和可靠性上都会有更加显著的提升。</p><h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>怎么拆分服务一直是个难题。虽然事后复盘的时候我的很多想法也不一定是正确，但是什么样的规模的客户需要使用什么样的拆分颗粒度，都是需要仔细考虑的。绝对不是一尘不变的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;现状&quot;&gt;&lt;a href=&quot;#现状&quot; class=&quot;headerlink&quot; title=&quot;现状&quot;&gt;&lt;/a&gt;现状&lt;/h1&gt;&lt;p&gt;对于一个基于微服务的中台系统来说，需要以什么样的颗粒度来拆分系统。这一直是基于微服务架构的系统中绕不过去的问题。&lt;/p&gt;
+&lt;p&gt;已H项目来说</summary>
+      
+    
+    
+    
+    <category term="设计" scheme="https://hashmaparraylist.github.io/categories/%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+    <category term="Aliyun" scheme="https://hashmaparraylist.github.io/tags/Aliyun/"/>
+    
+    <category term="Kubernetes" scheme="https://hashmaparraylist.github.io/tags/Kubernetes/"/>
+    
+    <category term="架构" scheme="https://hashmaparraylist.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+    <category term="Java" scheme="https://hashmaparraylist.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>H项目心路历程记 (二)</title>
